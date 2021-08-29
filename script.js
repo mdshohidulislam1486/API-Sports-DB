@@ -11,7 +11,7 @@ fetch(url)
 const url1 =(`https://thesportsdb.com/api/v1/json/1/searchplayers.php?p=${searchValue}`);
 fetch(url1)
 .then(res1 => res1.json())
-.then(data1 => console.log(data1))
+.then(data1 =>  displayPlayer(data1.player))
 
 } 
 
@@ -21,13 +21,27 @@ const displayTeam = teamNames =>{
     displayResult.textContent = '';
 for(const teamName of teamNames){
     const div = document.createElement('div')
-    div.classList.add('col-md-4', "d-flex", 'flex-column', 'justify-content-center', 'align-items-center')
+    div.classList.add( "d-flex", 'flex-column', 'justify-content-center', 'align-items-center')
     div.innerHTML = `
             
-                <img src="${teamName.strTeamBadge}" class="card-img-top w-25" alt="Banner Not Found">a
+                <img src="${teamName.strTeamBadge}" class="card-img-top w-25" alt="Banner Not Found">
                   <h5 class="card-title text-light text-center">${teamName.strTeam}</h5>
     `
-    const displayResult = document.getElementById('display-result');
     displayResult.appendChild(div)
 }
+}
+
+const displayPlayer = playerNames =>{
+    const displayResult1 = document.getElementById('display-result1');
+    displayResult1.textContent = '';
+for(const playerName of playerNames){
+    const div1 = document.createElement('div')
+    div1.classList.add("d-flex", 'flex-column', 'justify-content-center', 'align-items-center')
+    div1.innerHTML = `
+                <img src="${playerName.strThumb}" class="card-img-top w-25" alt="Banner Not Found">
+                  <h5 class="card-title text-light text-center">${playerName.strPlayer}</h5>
+    `
+    displayResult1.appendChild(div1)
+}
+
 }

@@ -32,12 +32,17 @@
 
     <!-- display search result  -->
     <section  class="container">
-          <div class="grid">
-            <div id='display-result' class="g-col-6 g-col-md-4 d-flex flex-column ">
-            </div>
-            <div class="g-col-6 g-col-md-4"></div>
-            <div class="g-col-6 g-col-md-4"></div>
-          </div>
+      <div class="row text-light ms-end">
+        <div id="display-result" class="col-md-4 d-flex flex-column justify-content-center align-items-center align-self-start">
+          First in DOM, ordered last
+        </div>
+        <div id="display-result1" class="col-md-4 d-flex flex-column justify-content-center align-items-center align-self-start">
+          Second in DOM, unordered
+        </div>
+        <div id="display-result2" class="col-md-4 d-flex flex-column justify-content-center align-items-center align-self-start">
+          Third in DOM, ordered first
+        </div>
+      </div>
         
     </section>
 
