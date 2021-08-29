@@ -8,6 +8,11 @@ const url =(`https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=${searc
 fetch(url)
 .then(res => res.json())
 .then(data => displayTeam(data.teams)); 
+const url1 =(`https://thesportsdb.com/api/v1/json/1/searchplayers.php?p=${searchValue}`);
+fetch(url1)
+.then(res1 => res1.json())
+.then(data1 => console.log(data1))
+
 } 
 
 
@@ -16,18 +21,13 @@ const displayTeam = teamNames =>{
     displayResult.textContent = '';
 for(const teamName of teamNames){
     const div = document.createElement('div')
-    div.classList.add('col')
+    div.classList.add('col-md-4', "d-flex", 'flex-column', 'justify-content-center', 'align-items-center')
     div.innerHTML = `
-            <div class="card h-100">
-                <img src="${teamName.strTeamBadge}" class="card-img-top" alt="Banner Not Found">
-                <div class="card-body">
-                  <h5 class="card-title">${teamName.strTeam}</h5>
-                  <p class="card-text">${teamName.strDescriptionEN.slice(0, 200)}</p>
-                </div>
-                <dvi>
-                <a class=" btn btn-success" target="_blank" href="${teamName.strWebsite}">Visit the website </a>
-            </div>
+            
+                <img src="${teamName.strTeamBadge}" class="card-img-top w-25" alt="Banner Not Found">a
+                  <h5 class="card-title text-light text-center">${teamName.strTeam}</h5>
     `
+    const displayResult = document.getElementById('display-result');
     displayResult.appendChild(div)
 }
 }
