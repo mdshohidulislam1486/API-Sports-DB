@@ -11,7 +11,9 @@ fetch(url)
 const url1 =(`https://thesportsdb.com/api/v1/json/1/searchplayers.php?p=${searchValue}`);
 fetch(url1)
 .then(res1 => res1.json())
-.then(data1 =>  displayPlayer(data1.player))
+.then(data1 =>  displayPlayer(data1.player)).catch(error=>{
+    console.log(error)
+})
 
 } 
 
@@ -35,13 +37,18 @@ const displayPlayer = playerNames =>{
     const displayResult1 = document.getElementById('display-result1');
     displayResult1.textContent = '';
 for(const playerName of playerNames){
-    const div1 = document.createElement('div')
-    div1.classList.add("d-flex", 'flex-column', 'justify-content-center', 'align-items-center')
-    div1.innerHTML = `
-                <img src="${playerName.strThumb}" class="card-img-top w-25" alt="Banner Not Found">
-                  <h5 class="card-title text-light text-center">${playerName.strPlayer}</h5>
-    `
-    displayResult1.appendChild(div1)
+    if(playerName.strThumb.length == 0 ){
+        const playerPic = document.getElementById('player-pic')
+        playerPic.src = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'
+    }else {
+        const div1 = document.createElement('div')
+        div1.classList.add("d-flex", 'flex-column', 'justify-content-center', 'align-items-center')
+        div1.innerHTML = `
+                    <img id="player-pic" src="${playerName.strThumb}" class="card-img-top w-25" alt="Banner Not Found">
+                      <h5 class="card-title text-light text-center">${playerName.strPlayer}</h5>
+        `
+        displayResult1.appendChild(div1)
+    }
 }
 
 }
