@@ -37,10 +37,17 @@ const displayPlayer = playerNames =>{
     const displayResult1 = document.getElementById('display-result1');
     displayResult1.textContent = '';
 for(const playerName of playerNames){
-    if(playerName.strThumb.length == 0 ){
-        const playerPic = document.getElementById('player-pic')
-        playerPic.src = 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'
-    }else {
+    if(playerName.strThumb == 0 ){
+        const playerPic = document.getElementById('player-pic').src('https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg')
+        const div1 = document.createElement('div')
+        div1.classList.add("d-flex", 'flex-column', 'justify-content-center', 'align-items-center')
+        div1.innerHTML = `
+                    <img id="player-pic" src="${playerName.playerPic}" class="card-img-top w-25" alt="Banner Not Found">
+                      <h5 class="card-title text-light text-center">${playerName.strPlayer}</h5>
+        `
+        displayResult1.appendChild(div1)
+
+    } else{
         const div1 = document.createElement('div')
         div1.classList.add("d-flex", 'flex-column', 'justify-content-center', 'align-items-center')
         div1.innerHTML = `
@@ -49,6 +56,8 @@ for(const playerName of playerNames){
         `
         displayResult1.appendChild(div1)
     }
+    
+    
 }
 
 }
